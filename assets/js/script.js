@@ -166,6 +166,46 @@ fetchData("projects").then(data => {
     showProjects(data);
 });
 
+async function loadCertifications() {
+    try {
+        const response = await fetch("assets/data/certifications.json");
+        return await response.json();
+    } catch (error) {
+        console.error("Failed to load certifications:", error);
+        return [];
+    }
+}
+
+function showCertifications(certifications) {
+    const container = document.getElementById("certificationsContainer");
+    if (!container) return;
+
+    container.innerHTML = certifications.map(cert => {
+        const logoHtml = cert.logo ? `<img class="cert-logo" src="assets/images/organizations/${cert.logo}.png" alt="${cert.organization} logo" />` : `<i class="fas fa-certificate"></i>`;
+        return `
+        <div class="cert-card tilt">
+            <div class="cert-icon">${logoHtml}</div>
+            <h3>${cert.title}</h3>
+            <p>${cert.description}</p>
+            <div class="cert-details">
+                <div class="cert-item"><span>Provider</span><small>${cert.organization}</small></div>
+                <div class="cert-item"><span>Issued</span><small>${cert.issueDate}</small></div>
+                <div class="cert-item"><span>Credential</span><small>${cert.credentialId}</small></div>
+            </div>
+            <div class="cert-actions">
+                <a class="primary" href="${cert.viewLink}" target="_blank" rel="noreferrer">View Certificate</a>
+                <a class="secondary" href="${cert.proofLink}" target="_blank" rel="noreferrer">Proof Link</a>
+            </div>
+        </div>
+    `}).join("");
+
+    VanillaTilt.init(document.querySelectorAll(".cert-card.tilt"), {
+        max: 15,
+    });
+}
+
+loadCertifications().then(certs => showCertifications(certs.slice(0, 6)));
+
 // <!-- tilt js effect starts -->
 VanillaTilt.init(document.querySelectorAll(".tilt"), {
     max: 15,
@@ -258,6 +298,6 @@ srtop.reveal('.work .box', { interval: 200 });
 srtop.reveal('.experience .timeline', { delay: 400 });
 srtop.reveal('.experience .timeline .container', { interval: 400 });
 
-/* SCROLL CONTACT */
-srtop.reveal('.contact .container', { delay: 400 });
-srtop.reveal('.contact .container .form-group', { delay: 400 });
+    /* SCROLL CERTIFICATIONS */
+    srtop.reveal('.certifications .cert-container', { delay: 400 });
+    srtop.reveal('.certifications .cert-card', { interval: 200 });
