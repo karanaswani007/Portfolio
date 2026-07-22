@@ -1128,7 +1128,7 @@ header .navbar ul li a:hover {
   justify-content: center;
   margin: 0 auto 1.6rem;
   border-radius: 50%;
-  background: #2506ad;
+  background: #ffffff;
   color: #fff;
   font-size: 2rem;
 }
@@ -1174,7 +1174,7 @@ header .navbar ul li a:hover {
 }
 .certifications .cert-card .cert-item span {
   font-weight: 600;
-  color: #2506ad;
+  color: #441eee;
 }
 .certifications .cert-card .cert-item small {
   font-size: 1.3rem;
