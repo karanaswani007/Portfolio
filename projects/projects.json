@@ -10,6 +10,16 @@
     }
   },
   {
+    "name": "HK PNR Checker",
+    "desc": "web application for checking Indian Railway PNR status in real time.",
+    "image": "hkpnrchecker",
+    "category": "web",
+    "links": {
+      "view": "https://hk-pnr.vercel.app/",
+      "code": "https://github.com/karanaswani007/HK-PNR-Checker"
+    }
+  },
+  {
     "name": "Smart Crop Protection System",
     "desc": "IoT-based system for real-time Animal Deterrence and Predator Alerts in Agriculture.",
     "image": "smartcropprotection",
