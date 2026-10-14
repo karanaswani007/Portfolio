@@ -27,13 +27,11 @@ const validSections = new Set([
 ]);
 
 if (!databaseUrl || !adminPassword || !sessionSecret) {
-  console.error("Missing configuration. Set DATABASE_URL, ADMIN_PASSWORD and SESSION_SECRET in .env.");
-  process.exit(1);
+  throw new Error("Missing configuration. Set DATABASE_URL, ADMIN_PASSWORD and SESSION_SECRET in the deployment environment.");
 }
 
 if (adminPassword.length < 12 || sessionSecret.length < 32) {
-  console.error("ADMIN_PASSWORD must be at least 12 characters and SESSION_SECRET at least 32 characters.");
-  process.exit(1);
+  throw new Error("ADMIN_PASSWORD must be at least 12 characters and SESSION_SECRET at least 32 characters.");
 }
 
 const pool = new Pool({ connectionString: databaseUrl });
@@ -234,16 +232,24 @@ app.use("/experience", express.static(path.join(root, "experience"), { index: fa
 app.use("/admin", express.static(path.join(root, "admin"), { index: false }));
 
 app.use((error, req, res, next) => {
+  if (error.type === "entity.parse.failed") {
+    return res.status(400).json({ error: "Invalid request payload. Please try again." });
+  }
+
   console.error("Request failed:", error);
   if (res.headersSent) return next(error);
   res.status(500).json({ error: "An unexpected server error occurred." });
 });
 
-initializeDatabase()
-  .then(() => {
-    app.listen(port, () => console.log(`Portfolio server running at http://localhost:${port}`));
-  })
-  .catch(error => {
-    console.error("Unable to initialize PostgreSQL content store:", error);
-    process.exit(1);
-  });
+if (require.main === module) {
+  initializeDatabase()
+    .then(() => {
+      app.listen(port, () => console.log(`Portfolio server running at http://localhost:${port}`));
+    })
+    .catch(error => {
+      console.error("Unable to initialize PostgreSQL content store:", error);
+      process.exit(1);
+    });
+}
+
+module.exports = { app, initializeDatabase };

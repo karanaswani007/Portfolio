@@ -82,10 +82,28 @@ function showNotice(message, isError = false) {
 async function request(url, options = {}) {
   const response = await fetch(url, {
     ...options,
+    credentials: "same-origin",
     headers: { "Content-Type": "application/json", ...options.headers }
   });
-  const result = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(result.error || "The request could not be completed.");
+
+  const rawText = await response.text();
+  let result = {};
+
+  if (rawText) {
+    try {
+      result = JSON.parse(rawText);
+    } catch {
+      const fallbackMessage = rawText.trim().startsWith("<")
+        ? "Admin API is currently unavailable. Check the server connection and try again."
+        : rawText.trim() || "The server returned an invalid response.";
+      throw new Error(fallbackMessage);
+    }
+  }
+
+  if (!response.ok) {
+    throw new Error(result.error || `Request failed (${response.status}).`);
+  }
+
   return result;
 }
 
