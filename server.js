@@ -182,7 +182,7 @@ app.post("/api/admin/logout", (req, res) => {
   res.clearCookie(sessionCookie, {
     httpOnly: true,
     sameSite: "strict",
-    secure: process.env.NODE_ENV === "production",
+    secure: process.env.NODE_ENV,
     path: "/"
   });
   res.json({ authenticated: false });
