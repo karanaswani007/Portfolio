@@ -6,7 +6,8 @@ const path = require("node:path");
 const express = require("express");
 const { Pool } = require("pg");
 
-const root = __dirname;
+const root = [__dirname, path.resolve(__dirname, "../.."), process.cwd()]
+  .find(directory => fs.existsSync(path.join(directory, "content", "default-content.json"))) || __dirname;
 const app = express();
 const port = Number(process.env.PORT || 3000);
 const adminPassword = process.env.ADMIN_PASSWORD || "";
