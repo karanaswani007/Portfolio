@@ -1,0 +1,120 @@
+{
+  "hero": {
+    "greeting": "Hi There,",
+    "firstName": "Karan",
+    "lastName": "Aswani",
+    "roles": ["Software Development", "Data Analytics", "Artificial Intelligence", "Machine Learning"],
+    "image": "/assets/images/hero.png"
+  },
+  "about": {
+    "name": "Karan",
+    "tag": "Software Engineer | Data Analyst | AI Enthusiast",
+    "description": "I am an Electronics & Telecommunication Engineering graduate driven by a passion for technology, software engineering and data-driven innovation. I specialize in building intelligent applications, exploring AI-powered solutions and leveraging data to solve complex problems. My experience includes developing web applications, working with modern development tools and creating projects that combine technical expertise with practical impact. I am committed to continuous learning and delivering solutions that create real value for users and businesses.",
+    "image": "/assets/images/profile2.jpg",
+    "email": "karanaswani222@gmail.com",
+    "location": "Hyderabad, Telangana, India - 500016",
+    "resume": "https://drive.google.com/file/d/10-4sD_zQOmvRYPMZAOIyBpB3VL1qhl-H/view?usp=drive_link"
+  },
+  "education": [
+    {
+      "degree": "Bachelor of Technology in Electronics & Telecommunication Engineering",
+      "institution": "Government College of engineering Chandrapur | GCOEC",
+      "period": "2022-2026 | Completed",
+      "image": "/assets/images/educat/college.jpg"
+    },
+    {
+      "degree": "HSC Science | PCMB",
+      "institution": "Sarvodaya Jr. College Sindewahi",
+      "period": "2020-2022 | Completed",
+      "image": "/assets/images/educat/school.jpg"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Self Employed",
+      "role": "Independent Software & AI Developer",
+      "period": "Nov 2025 - present"
+    },
+    {
+      "company": "MDB Electrosoft Pvt Ltd Amravati",
+      "role": "AI Ready Models and Computer Vision | 10 Days Internship",
+      "period": "July 2026"
+    },
+    {
+      "company": "MDB Electrosoft Pvt Ltd Amravati",
+      "role": "Embedded Systems, Multifunctional Robotics & Internet of Things | Internship",
+      "period": "Jan 2026 - June 2026"
+    },
+    {
+      "company": "GEC Chandrapur",
+      "role": "PLC, SCADA & DCS | 5 Days Workshop",
+      "period": "Jan 2026"
+    },
+    {
+      "company": "MDB Electrosoft Pvt Ltd Amravati",
+      "role": "Basics of Electronics, Electrical & PCB Designing | 10 Days Workshop",
+      "period": "Dec 2025"
+    },
+    {
+      "company": "CIIIT Chandrapur | Tata Technologies",
+      "role": "Neural Network & Artificial Intelligence | Internship",
+      "period": "Sep 2025 - Dec 2025"
+    },
+    {
+      "company": "CIIIT Chandrapur | Tata Technologies",
+      "role": "Industrial Robotics | Internship",
+      "period": "May 2025 - Aug 2025"
+    },
+    {
+      "company": "CIIIT Chandrapur | Tata Technologies",
+      "role": "Mechatronics & Internet of Things | Internship",
+      "period": "Jan 2025 - April 2025"
+    },
+    {
+      "company": "CIIIT Chandrapur | Tata Technologies",
+      "role": "Autonomous Connected Electric Vehicle (ACEV) | Internship",
+      "period": "July 2024 - Oct 2024"
+    }
+  ],
+  "contact": {
+    "phone": "+91 7378603865",
+    "email": "karanaswani222@gmail.com",
+    "location": "Chandrapur, India-442403",
+    "footerTitle": "Karan's Portfolio",
+    "footerMessage": "Thank you for visiting my personal portfolio website. Connect with me over socials. Keep Rising 🚀. Connect with me over live chat!",
+    "creditName": "Karan Aswani",
+    "creditUrl": "https://www.linkedin.com/in/karanaswani007"
+  },
+  "socials": [
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/karanaswani007/",
+      "icon": "fab fa-linkedin"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/karanaswani007",
+      "icon": "fab fa-github"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com/karanaswani0007",
+      "icon": "fab fa-twitter"
+    },
+    {
+      "name": "Telegram",
+      "url": "https://t.me/karanaswani007",
+      "icon": "fab fa-telegram-plane"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/karanaswani007",
+      "icon": "fab fa-instagram"
+    },
+    {
+      "name": "Dev",
+      "url": "https://dev.to/karanaswani007",
+      "icon": "fab fa-dev"
+    }
+  ]
+}

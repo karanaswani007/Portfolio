@@ -81,131 +81,6 @@ document.addEventListener('visibilitychange',
     });
 
 
-// <!-- typed js effect starts -->
-var typed = new Typed(".typing-text", {
-    strings: ["Software Development", "Data Analytics", "Artificial Intelligence", "Machine Learning"],
-    loop: true,
-    typeSpeed: 50,
-    backSpeed: 25,
-    backDelay: 500,
-});
-// <!-- typed js effect ends -->
-
-async function fetchData(type = "skills") {
-    let response
-    type === "skills" ?
-        response = await fetch("skills.json")
-        :
-        response = await fetch("./projects/projects.json")
-    const data = await response.json();
-    return data;
-}
-
-function showSkills(skills) {
-    let skillsContainer = document.getElementById("skillsContainer");
-    let skillHTML = "";
-    skills.forEach(skill => {
-        skillHTML += `
-        <div class="bar">
-              <div class="info">
-                <img src=${skill.icon} alt="skill" />
-                <span>${skill.name}</span>
-              </div>
-            </div>`
-    });
-    skillsContainer.innerHTML = skillHTML;
-}
-
-function showProjects(projects) {
-    let projectsContainer = document.querySelector("#work .box-container");
-    let projectHTML = "";
-    projects.slice(0, 10).filter(project => project.category != "android").forEach(project => {
-        projectHTML += `
-        <div class="box tilt">
-      <img draggable="false" src="/assets/images/projects/${project.image}.png" alt="project" />
-      <div class="content">
-        <div class="tag">
-        <h3>${project.name}</h3>
-        </div>
-        <div class="desc">
-          <p>${project.desc}</p>
-          <div class="btns">
-            <a href="${project.links.view}" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
-            <a href="${project.links.code}" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>`
-    });
-    projectsContainer.innerHTML = projectHTML;
-
-    // <!-- tilt js effect starts -->
-    VanillaTilt.init(document.querySelectorAll(".tilt"), {
-        max: 15,
-    });
-    // <!-- tilt js effect ends -->
-
-    /* ===== SCROLL REVEAL ANIMATION ===== */
-    const srtop = ScrollReveal({
-        origin: 'top',
-        distance: '80px',
-        duration: 1000,
-        reset: false
-    });
-
-    /* SCROLL PROJECTS */
-    srtop.reveal('.work .box', { interval: 200 });
-
-}
-
-fetchData().then(data => {
-    showSkills(data);
-});
-
-fetchData("projects").then(data => {
-    showProjects(data);
-});
-
-async function loadCertifications() {
-    try {
-        const response = await fetch("assets/data/certifications.json");
-        return await response.json();
-    } catch (error) {
-        console.error("Failed to load certifications:", error);
-        return [];
-    }
-}
-
-function showCertifications(certifications) {
-    const container = document.getElementById("certificationsContainer");
-    if (!container) return;
-
-    container.innerHTML = certifications.map(cert => {
-        const logoHtml = cert.logo ? `<img class="cert-logo" src="assets/images/organizations/${cert.logo}.png" alt="${cert.organization} logo" />` : `<i class="fas fa-certificate"></i>`;
-        return `
-        <div class="cert-card tilt">
-            <div class="cert-icon">${logoHtml}</div>
-            <h3>${cert.title}</h3>
-            <p>${cert.description}</p>
-            <div class="cert-details">
-                <div class="cert-item"><span>Provider</span><small>${cert.organization}</small></div>
-                <div class="cert-item"><span>Issued</span><small>${cert.issueDate}</small></div>
-                <div class="cert-item"><span>Credential</span><small>${cert.credentialId}</small></div>
-            </div>
-            <div class="cert-actions">
-                <a class="primary" href="${cert.viewLink}" target="_blank" rel="noreferrer">View Certificate</a>
-                <a class="secondary" href="${cert.proofLink}" target="_blank" rel="noreferrer">Proof Link</a>
-            </div>
-        </div>
-    `}).join("");
-
-    VanillaTilt.init(document.querySelectorAll(".cert-card.tilt"), {
-        max: 15,
-    });
-}
-
-loadCertifications().then(certs => showCertifications(certs.slice(0, 6)));
-
 // <!-- tilt js effect starts -->
 VanillaTilt.init(document.querySelectorAll(".tilt"), {
     max: 15,
@@ -218,7 +93,7 @@ function loader() {
     document.querySelector('.loader-container').classList.add('fade-out');
 }
 function fadeOut() {
-    setInterval(loader, 100);
+    setInterval(loader, 500);
 }
 window.onload = fadeOut;
 // pre loader end

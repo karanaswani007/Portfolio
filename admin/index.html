@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Portfolio Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="/admin/style.css">
+</head>
+<body>
+  <main id="adminApp">
+    <section class="login-screen" id="loginScreen" aria-labelledby="loginTitle">
+      <div class="login-card">
+        <a class="brand" href="/" aria-label="Back to portfolio"><span class="brand-mark"><i class="fab fa-node-js"></i></span> Karan<span class="brand-accent">.</span></a>
+        <p class="eyebrow">PORTFOLIO MANAGEMENT</p>
+        <h1 id="loginTitle">Welcome back</h1>
+        <p class="login-copy">Sign in to manage your portfolio content.</p>
+        <form id="loginForm">
+          <label for="adminPassword">Admin password</label>
+          <div class="password-wrap">
+            <i class="fas fa-lock"></i>
+            <input id="adminPassword" name="password" type="password" autocomplete="current-password" required>
+          </div>
+          <p class="form-error" id="loginError" role="alert"></p>
+          <button class="primary-button login-button" type="submit">Sign in <i class="fas fa-arrow-right"></i></button>
+        </form>
+        <a class="back-link" href="/"><i class="fas fa-long-arrow-alt-left"></i> Back to portfolio</a>
+      </div>
+      <div class="login-decoration decoration-one"></div>
+      <div class="login-decoration decoration-two"></div>
+    </section>
+
+    <section class="dashboard hidden" id="dashboard">
+      <aside class="sidebar">
+        <a class="brand sidebar-brand" href="/"><span class="brand-mark"><i class="fab fa-node-js"></i></span> Karan<span class="brand-accent">.</span></a>
+        <p class="sidebar-caption">WORKSPACE</p>
+        <nav id="sectionNavigation" aria-label="Content sections"></nav>
+        <div class="sidebar-bottom">
+          <a class="sidebar-link" href="/" target="_blank" rel="noreferrer"><i class="fas fa-external-link-alt"></i><span>View portfolio</span></a>
+          <button class="sidebar-link logout-button" id="logoutButton" type="button"><i class="fas fa-sign-out-alt"></i><span>Sign out</span></button>
+          <div class="admin-user"><span class="user-avatar">K</span><span><strong>Administrator</strong><small>Portfolio owner</small></span></div>
+        </div>
+      </aside>
+      <div class="main-panel">
+        <header class="topbar">
+          <div><p class="eyebrow">CONTENT STUDIO</p><h1 id="pageTitle">Dashboard</h1></div>
+          <a class="preview-button" href="/" target="_blank" rel="noreferrer"><i class="far fa-eye"></i><span>Preview site</span></a>
+        </header>
+        <div class="notice hidden" id="notice" role="status"></div>
+        <div id="contentPanel" aria-live="polite"></div>
+        <footer class="dashboard-footer">Changes are saved to your PostgreSQL content database.</footer>
+      </div>
+    </section>
+
+    <dialog class="editor-dialog" id="editorDialog">
+      <form id="itemForm" class="editor-card">
+        <div class="editor-heading"><div><p class="eyebrow" id="editorEyebrow">CONTENT ITEM</p><h2 id="editorTitle">Edit item</h2></div><button class="icon-button" id="closeEditor" type="button" aria-label="Close editor"><i class="fas fa-times"></i></button></div>
+        <div class="editor-fields" id="editorFields"></div>
+        <div class="editor-actions"><button class="secondary-button" id="cancelEditor" type="button">Cancel</button><button class="primary-button" type="submit">Save changes <i class="fas fa-check"></i></button></div>
+      </form>
+    </dialog>
+  </main>
+  <script src="/admin/admin.js"></script>
+</body>
+</html>
