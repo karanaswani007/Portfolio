@@ -16,19 +16,15 @@ function ensureDatabase() {
 }
 
 exports.handler = async (event, context) => {
-  const functionPath = event.path.match(/^\/\.netlify\/functions\/api(?:\/(.*))?$/);
-  if (!functionPath) {
-    return {
-      statusCode: 404,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ error: "API route not found." })
-    };
-  }
+  const requestPath = event.path || new URL(event.rawUrl).pathname;
+  const apiPath = requestPath
+    .replace(/^\/\.netlify\/functions\/api(?=\/|$)/, "")
+    .replace(/^\/api(?=\/|$)/, "");
 
   await ensureDatabase();
 
   return expressHandler({
     ...event,
-    path: `/api/${functionPath[1] || ""}`
+    path: `/api${apiPath}`
   }, context);
 };
