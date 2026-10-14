@@ -171,7 +171,7 @@ app.post("/api/admin/login", (req, res) => {
   res.cookie(sessionCookie, createSessionToken(), {
     httpOnly: true,
     sameSite: "strict",
-    secure: process.env.NODE_ENV === "production",
+    secure: process.env.NODE_ENV,
     maxAge: sessionDuration,
     path: "/"
   });

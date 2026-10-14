@@ -49,7 +49,7 @@ The function still requires a reachable PostgreSQL database (Neon works).
    root as the base directory. `netlify.toml` configures the publish directory,
    function bundle, API rewrite, and Node.js runtime.
 2. In Netlify, open **Site configuration → Environment variables** and add
-   `DATABASE_URL`, `ADMIN_PASSWORD`, `SESSION_SECRET`, and `NODE_ENV=production`.
+   `DATABASE_URL`, `ADMIN_PASSWORD`, `SESSION_SECRET`, and `NODE_ENV`.
    Use a unique password of at least 12 characters and a random secret of at
    least 32 characters. Do not commit these values or put them in `netlify.toml`.
 3. Trigger a new deploy after setting the variables. The first API request
