@@ -39,7 +39,12 @@ const pool = new Pool({ connectionString: databaseUrl });
 const loginAttempts = new Map();
 
 app.disable("x-powered-by");
-app.use(express.json({ limit: "2mb" }));
+const standardJsonParser = express.json({ limit: "2mb" });
+app.use((req, res, next) => {
+  if (req.method === "PUT" && req.path.startsWith("/api/admin/content/")) return next();
+  standardJsonParser(req, res, next);
+});
+const contentJsonParser = express.json({ limit: Infinity });
 
 function sign(value) {
   return crypto.createHmac("sha256", sessionSecret).update(value).digest("base64url");
@@ -189,7 +194,7 @@ app.post("/api/admin/logout", (req, res) => {
   res.json({ authenticated: false });
 });
 
-app.put("/api/admin/content/:section", requireAdmin, async (req, res, next) => {
+app.put("/api/admin/content/:section", requireAdmin, contentJsonParser, async (req, res, next) => {
   const { section } = req.params;
   const data = req.body.data;
 

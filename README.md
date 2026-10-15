@@ -39,6 +39,10 @@ content.
 
 The server creates its content table automatically. Back up the database before
 making infrastructure changes; content edits are saved immediately.
+Images uploaded in the admin are stored directly in PostgreSQL with their content.
+The application does not impose an upload-size limit on authenticated content
+saves, but the database provider, browser, and deployment platform can still
+restrict request or record sizes (including Netlify Functions).
 
 ### Deploying to Netlify
 

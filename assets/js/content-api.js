@@ -13,7 +13,10 @@
 
     function safeImage(value) {
         const image = String(value || "").trim();
-        return /^(https?:\/\/|\/(?!\/))/i.test(image) ? image : "";
+        return /^(https?:\/\/|\/(?!\/))/i.test(image)
+            || /^data:image\/(?:png|jpeg|gif|webp|avif);base64,[a-z0-9+/]+=*$/i.test(image)
+            ? image
+            : "";
     }
 
     async function loadContent() {
@@ -66,7 +69,8 @@
         if (certification.logo) {
             const image = document.createElement("img");
             image.className = "cert-logo";
-            image.src = `/assets/images/organizations/${encodeURIComponent(certification.logo.toLowerCase())}.png`;
+            image.src = safeImage(certification.logo)
+                || `/assets/images/organizations/${encodeURIComponent(certification.logo.toLowerCase())}.png`;
             image.alt = `${certification.organization || "Provider"} logo`;
             icon.append(image);
         } else {
